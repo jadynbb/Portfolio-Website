@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Jadyn Berlin | Computer Science @ UCLA</title>
+
+  <meta
+    name="description"
+    content="Jadyn Berlin — UCLA Computer Science student interested in software engineering and human-centered AI."
+  />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&family=Caveat:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#FFF9F6",
+            blush: "#F5DDD8",
+            blushDark: "#DDA8A0",
+            rose: "#B86F67",
+            brown: "#4B302C",
+            muted: "#806A66"
+          },
+          fontFamily: {
+            serif: ["DM Serif Display", "serif"],
+            sans: ["DM Sans", "sans-serif"],
+            handwriting: ["Caveat", "cursive"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(245,221,216,.75), transparent 30%),
+        radial-gradient(circle at 90% 5%, rgba(248,226,222,.8), transparent 30%),
+        #fff9f6;
+    }
+
+    .project-track {
+      scrollbar-width: none;
+    }
+
+    .project-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .timeline-dot::before {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      background: #fff9f6;
+      border: 2px solid #d68f87;
+      border-radius: 999px;
+      left: -6px;
+      top: 7px;
+    }
+
+    /* =========================================================
+       VINYL
+    ========================================================= */
+
+    .vinyl-record {
+      background: repeating-radial-gradient(
+        circle at center,
+        #201817 0 3px,
+        #332624 4px 6px,
+        #171110 7px 9px
+      );
+
+      border: 2px solid rgba(255,255,255,.75);
+      transition: transform .25s ease;
+    }
+
+    .vinyl-button:hover .vinyl-record:not(.is-spinning) {
+      transform: rotate(14deg) scale(1.04);
+    }
+
+    #vinylButton .vinyl-record.is-spinning {
+      animation: vinyl-spin 2.8s linear infinite;
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    @keyframes vinyl-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    #vinylLabel {
+      overflow: hidden;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition:
+        background-image .2s ease,
+        background-color .2s ease;
+    }
+
+    /* =========================================================
+       MUSIC
+    ========================================================= */
+
+    .music-card {
+      transform: translateY(0);
+    }
+
+    .music-card .album-frame {
+      transform: translateY(0);
+
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .music-card:not(.is-active):hover .album-frame {
+      transform: translateY(-5px);
+    }
+
+    .music-card.is-active .album-frame {
+      transform: translateY(-8px);
+      border-color: #DDA8A0;
+      box-shadow: 0 8px 18px rgba(75, 48, 44, 0.10);
+    }
+
+    .music-marquee-shell {
+      width: 100%;
+      overflow: hidden;
+      padding-inline: .25rem;
+    }
+
+    .music-marquee {
+      display: flex;
+      width: max-content;
+      gap: 1.5rem;
+
+      animation:
+        music-marquee-scroll 28s linear infinite;
+
+      will-change: transform;
+    }
+
+    .music-marquee-shell:hover .music-marquee,
+    .music-marquee-shell:focus-within .music-marquee {
+      animation-play-state: paused;
+    }
+
+    @keyframes music-marquee-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(calc(-50% - .75rem));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .music-marquee {
+        animation: none;
+      }
+
+      #vinylButton .vinyl-record.is-spinning {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-sans text-brown">
+
+<main>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section
+  id="home"
+  class="relative max-w-7xl mx-auto px-6 lg:px-10 min-h-[100svh] flex items-center"
+>
+
+  <div class="w-full">
+
+    <p class="uppercase tracking-[.35em] text-sm text-rose mb-3">
+      Hello, I'm
+    </p>
+
+    <h1 class="font-serif text-6xl md:text-7xl lg:text-8xl leading-none">
+      Jadyn Berlin
+    </h1>
+
+    <p class="mt-7 max-w-xl text-lg leading-relaxed text-muted">
+      UCLA Computer Science student building software and
+      exploring human-centered AI.
+    </p>
+
+    <div class="flex flex-wrap gap-4 mt-8">
+
+      <a
+        href="#projects"
+        class="bg-blushDark hover:bg-rose hover:text-white
+               px-7 py-3 rounded-full transition"
+      >
+        View My Work →
+      </a>
+
+      <a
+        href="#contact"
+        class="border border-blushDark px-7 py-3 rounded-full
+               hover:bg-blush transition"
+      >
+        Get In Touch
+      </a>
+
+    </div>
+
+    <a
+      href="#about"
+      class="absolute bottom-8 left-1/2 -translate-x-1/2
+             text-xs uppercase tracking-[.25em] text-muted
+             hover:text-rose transition"
+    >
+      Scroll ↓
+    </a>
+
+  </div>
+
+  <!-- Vinyl Easter Egg -->
+
+  <button
+    id="vinylButton"
+    type="button"
+    aria-label="Play a random song from Jadyn's rotation"
+    class="vinyl-button group fixed top-6 right-6 z-50
+           w-16 h-16 rounded-full shadow-lg
+           focus:outline-none focus:ring-4 focus:ring-blush/70"
+  >
+
+    <span
+      class="vinyl-record block w-full h-full rounded-full
+             relative overflow-hidden"
+      aria-hidden="true"
+    >
+
+      <span
+        id="vinylLabel"
+        class="absolute inset-[29%] rounded-full
+               bg-blushDark border-2 border-cream"
+      ></span>
+
+      <span
+        class="absolute inset-[47%] rounded-full bg-brown"
+      ></span>
+
+    </span>
+
+    <span
+      class="pointer-events-none absolute right-0 top-[4.5rem]
+             whitespace-nowrap rounded-full bg-white/90
+             px-3 py-1.5 text-xs text-muted opacity-0
+             shadow-sm transition group-hover:opacity-100"
+    >
+      play something ↓
+    </span>
+
+  </button>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section
+  id="about"
+  class="max-w-7xl mx-auto px-6 lg:px-10 pb-20"
+>
+
+  <div class="bg-white/50 rounded-3xl p-8 md:p-10">
+
+    <div class="grid md:grid-cols-2 gap-12">
+
+      <div>
+
+        <p class="uppercase tracking-[.3em] text-xs text-rose mb-3">
+          About Me
+        </p>
+
+        <h2 class="font-serif text-4xl">
+          Building with people in mind.
+        </h2>
+
+      </div>
+
+      <div class="text-muted leading-relaxed">
+
+        <p>
+          I'm a UCLA Computer Science student and community college
+          transfer from California's Central Valley. My path into tech
+          has shaped what I care about most: building useful technology
+          and creating opportunities for others.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     EXPERIENCE
+========================================================= -->
+
+<section
+  id="experience"
+  class="bg-white/35 border-y border-blush py-20"
+>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="flex items-center gap-6 mb-14">
+
+      <h2 class="font-serif text-5xl">
+        Experience
+      </h2>
+
+      <div class="h-px bg-blushDark flex-1"></div>
+
+      <span class="text-xs uppercase tracking-widest text-rose">
+        Résumé
+      </span>
+
+    </div>
+
+
+    <div class="ml-3 md:ml-32 border-l border-blushDark">
+
+
+      <!-- DIMACS -->
+
+      <article
+        class="timeline-dot relative pl-8 md:pl-12 pb-14
+               grid lg:grid-cols-[280px_1fr] gap-5"
+      >
+
+        <div>
+
+          <p class="text-xs uppercase tracking-wider text-rose mb-2">
+            May 2026 — Present
+          </p>
+
+          <h3 class="font-serif text-2xl">
+            Undergraduate Research Intern
+          </h3>
+
+          <p class="text-muted mt-1">
+            DIMACS NSF REU · Rutgers University
+          </p>
+
+        </div>
+
+        <div>
+
+          <p class="leading-relaxed text-muted max-w-2xl">
+            Built an end-to-end multilingual LLM safety pipeline
+            spanning <strong class="font-medium text-brown">10 languages</strong>
+            and <strong class="font-medium text-brown">9,000 red-team trials</strong>.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">Python</span>
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">LLMs</span>
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">NLP</span>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- UCLA -->
+
+      <article
+        class="timeline-dot relative pl-8 md:pl-12 pb-14
+               grid lg:grid-cols-[280px_1fr] gap-5"
+      >
+
+        <div>
+
+          <p class="text-xs uppercase tracking-wider text-rose mb-2">
+            Mar. 2026 — Present
+          </p>
+
+          <h3 class="font-serif text-2xl">
+            Peer Advisor
+          </h3>
+
+          <p class="text-muted mt-1">
+            UCLA Samueli School of Engineering
+          </p>
+
+        </div>
+
+        <div>
+
+          <p class="leading-relaxed text-muted max-w-2xl">
+            Advise engineering students on research and internships
+            while maintaining
+            <strong class="font-medium text-brown">3 UCLA program websites</strong>.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Advising
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              WordPress
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Web
+            </span>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- FRESNO STATE -->
+
+      <article
+        class="timeline-dot relative pl-8 md:pl-12 pb-14
+               grid lg:grid-cols-[280px_1fr] gap-5"
+      >
+
+        <div>
+
+          <p class="text-xs uppercase tracking-wider text-rose mb-2">
+            Jun. 2024 — Aug. 2024
+          </p>
+
+          <h3 class="font-serif text-2xl">
+            Undergraduate Research Intern
+          </h3>
+
+          <p class="text-muted mt-1">
+            California State University, Fresno
+          </p>
+
+        </div>
+
+        <div>
+
+          <p class="leading-relaxed text-muted max-w-2xl">
+            Evaluated
+            <strong class="font-medium text-brown">6 generative AI models</strong>
+            for synthetic DNA generation using BLAST and AlphaFold.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Generative AI
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Bioinformatics
+            </span>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- TUTOR -->
+
+      <article
+        class="timeline-dot relative pl-8 md:pl-12
+               grid lg:grid-cols-[280px_1fr] gap-5"
+      >
+
+        <div>
+
+          <p class="text-xs uppercase tracking-wider text-rose mb-2">
+            Jan. 2024 — Jul. 2025
+          </p>
+
+          <h3 class="font-serif text-2xl">
+            CS, Math & Physics Tutor
+          </h3>
+
+          <p class="text-muted mt-1">
+            Madera Community College
+          </p>
+
+        </div>
+
+        <div>
+
+          <p class="leading-relaxed text-muted max-w-2xl">
+            Led CS learning sessions and supported students across
+            programming, mathematics, and physics.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
+
+<section
+  id="projects"
+  class="max-w-7xl mx-auto px-6 lg:px-10 py-20"
+>
+
+  <div class="flex items-center gap-6 mb-10">
+
+    <h2 class="font-serif text-5xl">
+      Projects
+    </h2>
+
+    <div class="h-px bg-blushDark flex-1"></div>
+
+  </div>
+
+
+  <div class="relative">
+
+    <!-- Left Arrow -->
+
+    <button
+      onclick="scrollProjects(-1)"
+      aria-label="Previous projects"
+      class="absolute -left-4 top-1/2 -translate-y-1/2 z-10
+             bg-blush w-11 h-11 rounded-full shadow
+             flex items-center justify-center
+             hover:bg-blushDark transition"
+    >
+      <i data-lucide="chevron-left"></i>
+    </button>
+
+
+    <div
+      id="projectTrack"
+      class="project-track flex gap-6 overflow-x-auto
+             scroll-smooth snap-x pb-5"
+    >
+
+
+      <!-- LLM PROJECT -->
+
+      <article
+        class="snap-start shrink-0 w-[88%] md:w-[48%] lg:w-[32%]
+               bg-white/65 rounded-2xl overflow-hidden shadow-sm
+               border border-white"
+      >
+
+        <img
+          src="images/llm-project.jpg"
+          alt="Multilingual LLM red-teaming project"
+          class="w-full h-48 object-cover"
+        />
+
+        <div class="p-6">
+
+          <h3 class="font-serif text-2xl">
+            Multilingual LLM Red-Teaming
+          </h3>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Python
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              LLMs
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              NLP
+            </span>
+
+          </div>
+
+          <p class="mt-5 text-sm leading-relaxed text-muted">
+            Multilingual LLM safety across
+            <strong class="font-medium text-brown">10 languages</strong>
+            and
+            <strong class="font-medium text-brown">9,000 trials</strong>.
+          </p>
+
+          <a
+            href="#"
+            class="inline-flex items-center gap-2 mt-6
+                   text-rose font-medium"
+          >
+            View project
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- MEDIA PROJECT -->
+
+      <article
+        class="snap-start shrink-0 w-[88%] md:w-[48%] lg:w-[32%]
+               bg-white/65 rounded-2xl overflow-hidden shadow-sm
+               border border-white"
+      >
+
+        <img
+          src="images/media-analysis.jpg"
+          alt="Computational media framing project"
+          class="w-full h-48 object-cover"
+        />
+
+        <div class="p-6">
+
+          <h3 class="font-serif text-2xl">
+            Computational Media Framing Analysis
+          </h3>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Python
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              NLP
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              BeautifulSoup
+            </span>
+
+          </div>
+
+          <p class="mt-5 text-sm leading-relaxed text-muted">
+            NLP analysis of
+            <strong class="font-medium text-brown">300 articles</strong>
+            across five news outlets.
+          </p>
+
+          <a
+            href="#"
+            class="inline-flex items-center gap-2 mt-6
+                   text-rose font-medium"
+          >
+            View project
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- PARTY POOPERS -->
+
+      <article
+        class="snap-start shrink-0 w-[88%] md:w-[48%] lg:w-[32%]
+               bg-white/65 rounded-2xl overflow-hidden shadow-sm
+               border border-white"
+      >
+
+        <img
+          src="images/party-poopers.jpg"
+          alt="UCLA Party Poopers"
+          class="w-full h-48 object-cover"
+        />
+
+        <div class="p-6">
+
+          <h3 class="font-serif text-2xl">
+            UCLA Party Poopers
+          </h3>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Next.js
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              React
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              TypeScript
+            </span>
+
+          </div>
+
+          <p class="mt-5 text-sm leading-relaxed text-muted">
+            A restroom discovery and review app built for UCLA students.
+          </p>
+
+          <a
+            href="https://github.com/bgar324/ucla-poopers"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center gap-2 mt-6
+                   text-rose font-medium"
+          >
+            View GitHub
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- OS -->
+
+      <article
+        class="snap-start shrink-0 w-[88%] md:w-[48%] lg:w-[32%]
+               bg-white/65 rounded-2xl overflow-hidden shadow-sm
+               border border-white"
+      >
+
+        <img
+          src="images/os-project.jpg"
+          alt="Operating Systems Labs"
+          class="w-full h-48 object-cover"
+        />
+
+        <div class="p-6">
+
+          <h3 class="font-serif text-2xl">
+            Operating Systems Labs
+          </h3>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              C
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Linux
+            </span>
+
+            <span class="bg-blush px-3 py-1 rounded-full text-xs">
+              Systems
+            </span>
+
+          </div>
+
+          <p class="mt-5 text-sm leading-relaxed text-muted">
+            Scheduling, concurrency, and filesystem implementations in C.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <!-- Right Arrow -->
+
+    <button
+      onclick="scrollProjects(1)"
+      aria-label="Next projects"
+      class="absolute -right-4 top-1/2 -translate-y-1/2 z-10
+             bg-blush w-11 h-11 rounded-full shadow
+             flex items-center justify-center
+             hover:bg-blushDark transition"
+    >
+      <i data-lucide="chevron-right"></i>
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     MUSIC
+========================================================= -->
+
+<section
+  id="rotation"
+  class="border-t border-blush bg-white/30
+         py-20 scroll-mt-8"
+>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+
+    <!-- Heading -->
+
+    <div
+      class="flex flex-col md:flex-row md:items-end
+             md:justify-between gap-5 mb-12"
+    >
+
+      <div>
+
+        <p
+          class="uppercase tracking-[.3em]
+                 text-[10px] text-rose mb-3"
+        >
+          Off the Clock
+        </p>
+
+        <h2 class="font-serif text-5xl">
+          A little of what I'm listening to.
+        </h2>
+
+      </div>
+
+      <button
+        id="surpriseMe"
+        type="button"
+        class="self-start md:self-auto uppercase tracking-[.12em]
+               text-[10px] border border-blushDark rounded-full
+               px-5 py-3 hover:bg-blush transition"
+      >
+        Surprise me ↗
+      </button>
+
+    </div>
+
+
+    <div
+      class="grid lg:grid-cols-[0.7fr_1.3fr]
+             gap-10 lg:gap-12 items-center mb-6"
+    >
+
+      <!-- Selected Song -->
+
+      <div class="flex items-center gap-5">
+
+        <div
+          id="selectedCover"
+          class="w-28 h-28 md:w-32 md:h-32 shrink-0
+                 rounded-2xl bg-blush overflow-hidden
+                 border border-white shadow-sm
+                 flex items-center justify-center"
+        >
+
+          <div
+            class="w-[72%] h-[72%]
+                   rounded-full vinyl-record relative"
+          >
+            <span
+              class="absolute inset-[34%] rounded-full
+                     bg-blushDark border-2 border-cream"
+            ></span>
+
+            <span
+              class="absolute inset-[47%]
+                     rounded-full bg-brown"
+            ></span>
+          </div>
+
+        </div>
+
+
+        <div class="min-w-0">
+
+          <p
+            class="uppercase tracking-[.25em]
+                   text-[9px] text-rose mb-3"
+          >
+            Selected
+          </p>
+
+          <h3
+            id="selectedTitle"
+            class="font-serif text-3xl md:text-4xl leading-tight"
+          >
+            Todo de Ti
+          </h3>
+
+          <p
+            id="selectedArtist"
+            class="text-muted mt-2 text-base md:text-lg"
+          >
+            Rauw Alejandro
+          </p>
+
+          <a
+            id="spotifyLink"
+            href="https://open.spotify.com/track/3rdAz1fbUfZxYgaCviYhRo"
+            target="_blank"
+            rel="noreferrer"
+            class="uppercase tracking-[.12em] inline-block
+                   mt-5 text-[9px] border-b border-rose
+                   text-rose pb-1 hover:text-brown
+                   hover:border-brown transition"
+          >
+            Spotify ↗
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- Marquee -->
+
+      <div
+        class="lg:border-l border-blushDark
+               lg:pl-10 min-w-0 overflow-hidden"
+      >
+
+        <div class="mb-4">
+
+          <p
+            class="uppercase tracking-[.25em]
+                   text-[9px] text-rose"
+          >
+            My Rotation
+          </p>
+
+          <p class="text-xs text-muted mt-2">
+            Hover to pause · click to select
+          </p>
+
+        </div>
+
+        <div class="music-marquee-shell py-2">
+
+          <div
+            id="musicTrack"
+            class="music-marquee"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section
+  id="contact"
+  class="max-w-7xl mx-auto px-6 lg:px-10 py-20"
+>
+
+  <div
+    class="bg-blush rounded-3xl p-10 md:p-16
+           flex flex-col md:flex-row
+           justify-between items-start md:items-end gap-10"
+  >
+
+    <div>
+
+      <p
+        class="uppercase tracking-[.3em]
+               text-xs text-rose mb-3"
+      >
+        Let's Connect
+      </p>
+
+      <h2 class="font-serif text-4xl md:text-5xl">
+        Have something in mind?
+      </h2>
+
+      <p class="text-muted mt-4">
+        I'm currently open to software engineering and research opportunities.
+      </p>
+
+    </div>
+
+
+    <div class="flex flex-wrap gap-5 text-sm">
+
+      <a
+        href="mailto:YOUR_EMAIL@gmail.com"
+        class="border-b border-rose pb-1 hover:text-rose transition"
+      >
+        Email ↗
+      </a>
+
+      <a
+        href="#"
+        target="_blank"
+        rel="noreferrer"
+        class="border-b border-rose pb-1 hover:text-rose transition"
+      >
+        LinkedIn ↗
+      </a>
+
+      <a
+        href="#"
+        target="_blank"
+        rel="noreferrer"
+        class="border-b border-rose pb-1 hover:text-rose transition"
+      >
+        GitHub ↗
+      </a>
+
+      <a
+        href="#"
+        target="_blank"
+        rel="noreferrer"
+        class="border-b border-rose pb-1 hover:text-rose transition"
+      >
+        Résumé ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="border-t border-blush">
+
+  <div
+    class="max-w-7xl mx-auto px-6 lg:px-10 py-8
+           flex flex-col sm:flex-row justify-between gap-4
+           text-sm text-muted"
+  >
+
+    <p>
+      © 2026 Jadyn Berlin
+    </p>
+
+    <p>
+      HTML · Tailwind CSS · JavaScript
+    </p>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+  lucide.createIcons();
+
+
+  // =========================================================
+  // PROJECT CAROUSEL
+  // =========================================================
+
+  function scrollProjects(direction) {
+
+    const track = document.getElementById("projectTrack");
+    const card = track.querySelector("article");
+
+    const scrollAmount = card.offsetWidth + 24;
+
+    track.scrollBy({
+      left: direction * scrollAmount,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  // =========================================================
+  // MUSIC
+  // =========================================================
+
+  const musicCatalog = [
+
+    {
+      spotifyUrl:
+        "https://open.spotify.com/track/3rdAz1fbUfZxYgaCviYhRo?si=178183bf9fd24e90",
+
+      title: "Todo de Ti",
+      artist: "Rauw Alejandro"
+    },
+
+    {
+      spotifyUrl:
+        "https://open.spotify.com/track/2drn04PdLw7Ivym9GQBsZX?si=74acafdbf07546da",
+
+      title: "Te Alejaste",
+      artist: "Junior H, Snow Tha Product"
+    },
+
+    {
+      spotifyUrl:
+        "https://open.spotify.com/track/3h5T5JypYU7huFiVYhv1dr?si=aeecce04aa3c423f",
+
+      title: "Bby Wow",
+      artist: "Karol G"
+    },
+
+    {
+      spotifyUrl:
+        "https://open.spotify.com/track/4cIVJ0b0A2DThFbrJsXTdy?si=f4444af243544e7f",
+
+      title: "Tuqlo",
+      artist: "Fuerza Regida"
+    },
+
+    {
+      spotifyUrl:
+        "https://open.spotify.com/track/7KA4W4McWYRpgf0fWsJZWB",
+
+      title: "See You Again",
+      artist: "Tyler, The Creator feat. Kali Uchis"
+    }
+
+  ];
+
+
+  const vinylButton =
+    document.getElementById("vinylButton");
+
+  const vinylRecord =
+    vinylButton.querySelector(".vinyl-record");
+
+  const vinylLabel =
+    document.getElementById("vinylLabel");
+
+  const musicTrack =
+    document.getElementById("musicTrack");
+
+  const selectedCover =
+    document.getElementById("selectedCover");
+
+  const selectedTitle =
+    document.getElementById("selectedTitle");
+
+  const selectedArtist =
+    document.getElementById("selectedArtist");
+
+  const spotifyLink =
+    document.getElementById("spotifyLink");
+
+  const surpriseMe =
+    document.getElementById("surpriseMe");
+
+
+  let selectedMusicIndex = 0;
+
+
+  // =========================================================
+  // SPOTIFY METADATA
+  // =========================================================
+
+  async function loadSpotifyMetadata(song) {
+
+    const endpoint =
+      "https://open.spotify.com/oembed?url=" +
+      encodeURIComponent(song.spotifyUrl);
+
+    try {
+
+      const response = await fetch(endpoint);
+
+      if (!response.ok) {
+        throw new Error(
+          `Spotify oEmbed returned ${response.status}`
+        );
+      }
+
+      const data = await response.json();
+
+      return {
+        ...song,
+        cover: data.thumbnail_url || ""
+      };
+
+    }
+
+    catch (error) {
+
+      console.warn(
+        "Could not load Spotify artwork:",
+        song.spotifyUrl,
+        error
+      );
+
+      return {
+        ...song,
+        cover: ""
+      };
+
+    }
+
+  }
+
+
+  // =========================================================
+  // COVER MARKUP
+  // =========================================================
+
+  function vinylMarkup(extraClass = "") {
+
+    return `
+      <div class="${extraClass} rounded-full vinyl-record relative">
+
+        <span
+          class="absolute inset-[34%]
+                 rounded-full bg-blushDark
+                 border-2 border-cream"
+        ></span>
+
+        <span
+          class="absolute inset-[47%]
+                 rounded-full bg-brown"
+        ></span>
+
+      </div>
+    `;
+
+  }
+
+
+  function coverMarkup(
+    song,
+    sizeClass = "w-full h-full"
+  ) {
+
+    if (song.cover) {
+
+      return `
+        <img
+          src="${song.cover}"
+          alt="${song.title} album artwork"
+          class="${sizeClass} object-cover"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        >
+      `;
+
+    }
+
+    return `
+      <div
+        class="${sizeClass}
+               bg-blush flex
+               items-center justify-center"
+      >
+        ${vinylMarkup("w-[72%] h-[72%]")}
+      </div>
+    `;
+
+  }
+
+
+  // =========================================================
+  // MUSIC CARDS
+  // =========================================================
+
+  function musicCard(
+    song,
+    index,
+    duplicate = false
+  ) {
+
+    const active =
+      index === selectedMusicIndex
+        ? "is-active"
+        : "";
+
+    return `
+
+      <button
+        type="button"
+        data-song-index="${index}"
+        onclick="selectSong(${index})"
+
+        class="music-card ${active}
+               shrink-0 w-32 md:w-36 text-left"
+
+        aria-label="Select ${song.title} by ${song.artist}"
+
+        ${duplicate
+          ? 'tabindex="-1" aria-hidden="true"'
+          : ""}
+      >
+
+        <div
+          class="album-frame aspect-square
+                 rounded-2xl overflow-hidden
+                 border border-white
+                 bg-blush shadow-sm"
+        >
+          ${coverMarkup(song)}
+        </div>
+
+        <h3
+          class="font-serif text-lg md:text-xl
+                 mt-4 leading-tight"
+        >
+          ${song.title}
+        </h3>
+
+        <p
+          class="text-xs text-muted mt-1
+                 leading-relaxed"
+        >
+          ${song.artist}
+        </p>
+
+      </button>
+
+    `;
+
+  }
+
+
+  function renderMusicCatalog() {
+
+    const firstSet =
+      musicCatalog
+        .map(
+          (song, index) =>
+            musicCard(song, index, false)
+        )
+        .join("");
+
+
+    const secondSet =
+      musicCatalog
+        .map(
+          (song, index) =>
+            musicCard(song, index, true)
+        )
+        .join("");
+
+
+    musicTrack.innerHTML =
+      firstSet + secondSet;
+
+  }
+
+
+  function renderSelectedCover(song) {
+
+    selectedCover.innerHTML =
+      coverMarkup(song);
+
+  }
+
+
+  function updateActiveMusicCards() {
+
+    musicTrack
+      .querySelectorAll(".music-card")
+      .forEach((card) => {
+
+        const cardIndex =
+          Number(card.dataset.songIndex);
+
+        card.classList.toggle(
+          "is-active",
+          cardIndex === selectedMusicIndex
+        );
+
+      });
+
+  }
+
+
+  // =========================================================
+  // SELECT SONG
+  // =========================================================
+
+  function selectSong(
+    index,
+    shouldScroll = false
+  ) {
+
+    selectedMusicIndex = index;
+
+    const song =
+      musicCatalog[index];
+
+
+    selectedTitle.textContent =
+      song.title;
+
+    selectedArtist.textContent =
+      song.artist;
+
+    spotifyLink.href =
+      song.spotifyUrl;
+
+
+    renderSelectedCover(song);
+
+
+    // Start vinyl spinning
+
+    vinylRecord.classList.add(
+      "is-spinning"
+    );
+
+
+    // Put selected album artwork
+    // inside vinyl center label
+
+    if (song.cover) {
+
+      vinylLabel.style.backgroundImage =
+        `url("${song.cover}")`;
+
+      vinylLabel.style.backgroundColor =
+        "transparent";
+
+    }
+
+    else {
+
+      vinylLabel.style.backgroundImage =
+        "none";
+
+      vinylLabel.style.backgroundColor =
+        "#B86F67";
+
+    }
+
+
+    updateActiveMusicCards();
+
+
+    if (shouldScroll) {
+
+      document
+        .getElementById("rotation")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+    }
+
+  }
+
+
+  // =========================================================
+  // RANDOM SONG
+  // =========================================================
+
+  function randomSong(
+    shouldScroll = true
+  ) {
+
+    let nextIndex =
+      selectedMusicIndex;
+
+
+    if (musicCatalog.length > 1) {
+
+      while (
+        nextIndex === selectedMusicIndex
+      ) {
+
+        nextIndex =
+          Math.floor(
+            Math.random() *
+            musicCatalog.length
+          );
+
+      }
+
+    }
+
+
+    selectSong(
+      nextIndex,
+      shouldScroll
+    );
+
+  }
+
+
+  // =========================================================
+  // INITIALIZE MUSIC
+  // =========================================================
+
+  async function initializeMusic() {
+
+    const hydratedSongs =
+      await Promise.all(
+        musicCatalog.map(
+          loadSpotifyMetadata
+        )
+      );
+
+
+    hydratedSongs.forEach(
+      (song, index) => {
+
+        musicCatalog[index] =
+          song;
+
+      }
+    );
+
+
+    renderMusicCatalog();
+
+    selectSong(
+      0,
+      false
+    );
+
+  }
+
+
+  vinylButton.addEventListener(
+    "click",
+    () => randomSong(true)
+  );
+
+
+  surpriseMe.addEventListener(
+    "click",
+    () => randomSong(false)
+  );
+
+
+  renderMusicCatalog();
+
+  renderSelectedCover(
+    musicCatalog[0]
+  );
+
+  initializeMusic();
+
+</script>
+
+</body>
+</html>
