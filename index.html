@@ -33,6 +33,18 @@
   />
 
   <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    if (window.location.hash) {
+      history.replaceState(
+        history.state,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+
     tailwind.config = {
       theme: {
         extend: {
@@ -80,6 +92,25 @@
       border-radius: 999px;
       left: -6px;
       top: 7px;
+    }
+
+    /* =========================================================
+       HERO REVEAL
+    ========================================================= */
+
+    .hero-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 1000ms cubic-bezier(.22, 1, .36, 1),
+        transform 1000ms cubic-bezier(.22, 1, .36, 1);
+      transition-delay: var(--hero-reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    .hero-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* =========================================================
@@ -274,6 +305,12 @@
       .music-card .album-frame {
         transition: none;
       }
+
+      .hero-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -293,23 +330,35 @@
 
   <div class="w-full">
 
-    <p class="uppercase font-label text-sm text-rose mb-3">
+    <p
+      class="hero-reveal uppercase font-label text-sm text-rose mb-3"
+      style="--hero-reveal-delay: 0ms"
+    >
       Hello, I'm
     </p>
 
-    <h1 class="font-serif text-6xl md:text-7xl lg:text-8xl leading-none">
+    <h1
+      class="hero-reveal font-serif text-6xl md:text-7xl lg:text-8xl leading-none"
+      style="--hero-reveal-delay: 100ms"
+    >
       Jadyn Berlin
     </h1>
 
-    <p class="mt-7 max-w-xl text-lg leading-relaxed text-muted">
+    <p
+      class="hero-reveal mt-7 max-w-xl text-lg leading-relaxed text-muted"
+      style="--hero-reveal-delay: 200ms"
+    >
       Computer Science @ UCLA — interested in building technology
       that's useful, thoughtful, and grounded in the people it serves.
     </p>
 
-    <div class="flex flex-wrap gap-4 mt-8">
+    <div
+      class="hero-reveal flex flex-wrap gap-4 mt-8"
+      style="--hero-reveal-delay: 300ms"
+    >
 
       <a
-        href="#projects"
+        href="#experience"
         class="bg-blushDark hover:bg-rose hover:text-white
                px-7 py-3 rounded-full transition"
       >
@@ -598,7 +647,7 @@
 
 <section
   id="projects"
-  class="max-w-7xl mx-auto px-6 lg:px-10 py-20"
+  class="max-w-7xl mx-auto px-6 lg:px-10 pt-20 pb-0"
 >
 
   <div class="flex items-center gap-6 mb-10">
@@ -654,7 +703,8 @@
                bg-white/65 rounded-2xl overflow-hidden shadow-sm
                border border-white transition-all duration-300 ease-out
                hover:-translate-y-1.5
-               hover:shadow-lg"
+               hover:shadow-lg
+               hover:cursor-pointer"
       >
 
         <img
@@ -700,17 +750,23 @@
 
           <a
             href="#"
-            class="inline-flex items-center gap-2 mt-6
-                   text-rose font-medium"
+            class="inline-flex items-center gap-1 mt-6
+                  text-rose font-medium"
           >
             View project
 
-            <i
-              data-lucide="arrow-up-right"
-              class="w-4 h-4"
-            ></i>
-
-          </a>
+            <span
+              class="inline-flex
+                    transition-transform duration-200 ease-out
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5"
+            >
+              <i
+                data-lucide="arrow-up-right"
+                class="w-3.5 h-3.5"
+              ></i>
+            </span>
+</a>
 
         </div>
 
@@ -930,36 +986,61 @@
 
 <section
   id="about"
-  class="max-w-7xl mx-auto px-6 lg:px-10 pb-20"
+  class="max-w-7xl mx-auto px-6 lg:px-10 py-20"
 >
 
-  <div class="bg-white/50 rounded-3xl p-8 md:p-10">
+  <div
+    class="grid md:grid-cols-[0.8fr_1.2fr]
+           gap-10 md:gap-16 lg:gap-24
+           items-center"
+  >
 
-    <div class="grid md:grid-cols-2 gap-12">
+    <!-- Heading -->
 
-      <div>
+    <div>
 
-        <p class="font-label uppercase text-xs text-rose mb-3">
-          About Me
-        </p>
+      <p
+        class="font-label uppercase
+               text-xs text-rose mb-3"
+      >
+        About Me
+      </p>
 
-        <h2 class="font-serif text-4xl">
-          Building with people in mind.
-        </h2>
+      <h2
+        class="font-serif text-4xl md:text-5xl
+               leading-[1.08] max-w-sm"
+      >
+        Building with people in mind.
+      </h2>
 
-      </div>
+      <div
+        class="w-12 h-px bg-blushDark mt-6"
+        aria-hidden="true"
+      ></div>
 
-      <div class="text-muted leading-relaxed">
+    </div>
 
-        <p>
-          As a community college student from the rural Central California, my journey into 
-          tech was limited by my enviorment: I didn't have a mentor to guide me. As I figured out
-          the roadmap, I eventually paved a path for myself to UCLA.
-          has shaped what I care about most: building useful technology
-          and creating opportunities for others.
-        </p>
 
-      </div>
+    <!-- Story -->
+
+    <div class="lg:pr-12">
+
+      <p
+        class="max-w-xl text-muted
+               leading-8"
+      >
+        As a community college student from rural Central
+        California, I began my journey into tech without a
+        clear roadmap or mentor to guide me. I learned to
+        navigate that path on my own, eventually finding my
+        way to UCLA. That journey shaped what I care about
+        most:
+        <strong class="font-medium text-brown">
+          building human-centered technology, leveraging AI
+          to solve meaningful, real-world problems, and
+          expanding access to opportunity.
+        </strong>
+      </p>
 
     </div>
 
@@ -973,12 +1054,13 @@
 ========================================================= -->
 
 <section
-  id="rotation"
+  id="music"
   class="border-t border-blush bg-white/30
-         pt-20 pb-15 scroll-mt-8"
+         pt-20 pb-15"
 >
 
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+  <div id="music-content"
+       class="max-w-7xl mx-auto px-6 lg:px-10">
 
 
     <!-- Heading -->
@@ -1172,20 +1254,10 @@
       </p>
 
       <h2 class="font-serif text-3xl md:text-4xl">
-        Let's Connect
+        Find me elsewhere on the internet. 
       </h2>
 
     </div>
-
-
-    <!-- Divider -->
-
-    <div
-      class="hidden md:block
-             h-12 w-px bg-blushDark/60"
-      aria-hidden="true"
-    ></div>
-
 
     <!-- Social Links -->
 
@@ -1316,6 +1388,34 @@
 <script>
 
   lucide.createIcons();
+
+  // refresh settings
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant"
+  });
+
+  function revealHero() {
+
+    document
+      .querySelectorAll(".hero-reveal")
+      .forEach((element) => {
+        element.classList.add("is-visible");
+      });
+
+  }
+
+  window.addEventListener("load", () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant"
+    });
+
+    requestAnimationFrame(revealHero);
+  });
 
 
   // =========================================================
@@ -1772,12 +1872,10 @@
 
     if (shouldScroll) {
 
-      document
-        .getElementById("rotation")
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+      document.getElementById("music-content").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
 
     }
 
